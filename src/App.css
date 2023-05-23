@@ -1,0 +1,468 @@
+.header-container{
+  width: 100%;
+  height: 100px;
+  background-color: #F5F5F5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-image: linear-gradient(45deg, rgba(179, 224, 239, 0.89),rgb(247, 186, 193));
+  border-bottom: 2px solid whitesmoke;
+ }
+ .header-title{
+  font-size: 40px;
+  font-weight: 600;
+  color: #000000;
+ }
+ .header-links{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  margin-right: 20px;
+ }
+  
+  
+ .header-items{
+  font-weight: 200;
+  font-size: 20px;
+  color: black;
+  text-decoration: none;
+ }
+  
+ .header-items:hover{
+  text-decoration: underline;
+  font-size: 24px;
+  text-shadow: 0 0 2px 1 #000;
+  /* color:orange; */
+  font-weight: 500;
+ }
+  
+ .header{
+  font-weight: 200;
+  font-size: 20px;
+  color: #000;
+  margin-left: 20px;
+ }
+  
+ .header h1, .header p {
+  margin: 0;
+  
+ }
+
+section{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background: url('../public/weather4.jpg') no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+
+.login-box{
+  position: relative;
+  width: 400px;
+  height: 450px;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, .5);
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(15px);
+}
+
+h2{
+  font-size: 2cm;
+  color: black;
+  text-align: center;
+}
+
+.input-box{
+  position: relative;
+  width: 310px;
+  margin: 30px 0px;
+  border-bottom: 2px solid white;
+}
+
+.input-box label{
+  position: absolute;
+  top: 50%;
+  left: 3px;
+  transform: translateY(-50%);
+  font-size: 1em;
+  color: aliceblue;
+  pointer-events: none;
+}
+
+.input-box input:focus~label,
+.input-box input:valid~label{
+  top: -5px;
+}
+
+.input-box input{
+  width: 100%;
+  height: 50px;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  color: aliceblue;
+  padding: 0px 35px 0px 5px;
+}
+
+.input-box .icon{
+  position: absolute;
+  right: 5px;
+  color: white;
+  font-size: 1.2em;
+  line-height: 57px;
+}
+
+
+
+button{
+  width: 100%;
+  height: 40px;
+  background: white;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 1em;
+  color: black;
+  font-weight: 500;
+}
+
+
+@media (max-width: 360px){
+  .login-box{
+      width: 100%;
+      height: 100vh;
+      border: none;
+      border: 0;
+  }
+  .input-box{
+      width: 290px;
+  }
+}
+
+.profile-page {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  /* background-color: #f2f2f2; */
+  /* color: #333; */
+}
+
+.profilePage{
+  background: url('../public/pfp.webp') no-repeat;
+  background-size: cover;
+  /* background-color: rgb(227, 153, 57); */
+  height: inherit;
+}
+
+.checkbox {
+  justify-content: center;
+  align-items: center;
+  /* background-color: grey; */
+  /* border-color: black; */
+  border: ridge;
+  border-width: 5px;
+  margin-bottom: 20px;
+  margin-left: 100px;
+  margin-right: 100px;
+  font-size: larger;
+  padding: 10px;
+  background-color: black;
+  color:  yellow;
+}
+          
+.button-89 {
+  --b: 3px;   /* border thickness */
+  --s: .45em; /* size of the corner */
+  --color: #373B44;
+  
+  padding: calc(.5em + var(--s)) calc(.9em + var(--s));
+  color: var(--color);
+  --_p: var(--s);
+  background:
+    conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--color) 0)
+    var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+  transition: .3s linear, color 0s, background-color 0s;
+  outline: var(--b) solid #08080800;
+  outline-offset: .6em;
+  font-size: 16px;
+/* background-color: gray; */
+  border: 0;
+
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+
+  
+}
+
+.button-89:hover,
+.button-89:focus-visible{
+  --_p: 0px;
+  outline-color: var(--color);
+  outline-offset: .05em;
+}
+
+.button-89:active {
+  background: var(--color);
+  color: #fff;
+}
+
+
+
+
+
+
+
+/* SignUpPage.css */
+
+.signup-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  /* background: url('../public/signup.png') no-repeat; */
+  background-image:linear-gradient(45deg,rgba(247, 186, 193, 0.807),rgba(179, 224, 239, 0.845)), url('../public/signup.png');
+  background-size: cover;
+  /* opacity: 0.5; */
+  
+}
+
+.signup-heading {
+  font-size: 3rem;
+  color: #fff;
+  margin-bottom: 2rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  font-family: 'Arial', sans-serif;
+}
+
+.signup-form {
+  width: 400px;
+  padding: 40px;
+  background: transparent;
+  backdrop-filter: blur(15px);
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgb(0, 0, 2);
+  margin-bottom: 100px;
+  color: #fff;
+  font-weight: bolder;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-input {
+  width: 380px;
+  padding: 5px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: 'Arial', sans-serif;
+}
+
+
+
+          
+.button-73 {
+  appearance: none;
+  background-color: #FFFFFF;
+  border-radius: 40em;
+  border-style: none;
+  box-shadow: #ADCFFF 0 -12px 6px inset;
+  box-sizing: border-box;
+  color: #000000;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -.40px;
+  margin: 5px;
+  outline: none;
+  quotes: auto;
+  text-align: center;
+  text-decoration: none;
+  transition: all .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-73:hover {
+  background-color: lightblue;
+  box-shadow: lightgreen 0 -6px 8px inset;
+  transform: scale(1.125);
+}
+
+.button-73:active {
+  transform: scale(1.025);
+}
+
+@media (min-width: 768px) {
+  .button-73 {
+    font-size: 1.5rem;
+  }
+}
+
+
+.bodi{
+ 
+  margin-top: 0px;
+  /* margin-left: 50px; */
+  /* margin-right: 50px; */
+  background-image: url('../public/cl4.jpg');
+  background-size: cover;
+}
+
+.heading{
+  border: 2px solid black;
+  border-radius: 50px;
+  padding: 5px;
+  font-size: 20px;
+  color: black;
+  margin-top: 20px;
+  text-align: center;
+  backdrop-filter:blur(15px);
+  /* background-color:#0e382c; */
+}
+
+#weather{
+  color: white;
+  animation-name: changecolor;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+  animation-timing-function: ease-in-out;
+}
+@keyframes changecolor {
+  0% {text-shadow: 2px 2px 8px red;}
+  10% {text-shadow: 2px 2px 8px yellow;}
+  20% {text-shadow: 2px 2px 8px green;}
+  30% {text-shadow: 2px 2px 8px orange;}
+  40% {text-shadow: 2px 2px 8px red;}
+  50% {text-shadow: 2px 2px 8px olive;}
+  60% {text-shadow: 2px 2px 8px orange;}
+  70% {text-shadow: 2px 2px 8px green;}
+  80% {text-shadow: 2px 2px 8px blue;}
+  90% {text-shadow: 2px 2px 8px yellow;}
+  100% {text-shadow: 2px 2px 8px red;}
+}
+.navbar{
+  margin-top: 30px;
+  border: 2px solid black;
+  border-radius: 50px;
+}
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: white;
+}
+
+.navbar li {
+  float: left;
+}
+
+.navbar li a {
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.navbar li a:hover {
+  color: red;
+  font-size: 18px;
+}
+
+.signup {
+  clear: both;
+  max-width: 600px;
+  border: 2px solid white;
+  margin-top: 0 auto;
+  padding: 20px;
+  /* background-color: #ffffff; */
+  border-radius: 5px;
+  background-blend-mode: lighten;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(15px);
+}
+
+
+#but {
+  padding: 10px 20px;
+  margin-top: 10px;
+  background-color: #4caf50;
+  color: #ffffff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+#but:hover{
+  background-color: #3e8e41;
+  height:40px;
+  width: 95px;
+}
+
+
+#pic1{
+  /* margin-left: 1100px; */
+  height: 300px;
+  width: 300px;
+  border-radius: 50%;
+  float: right;
+}
+.why span{
+  font-size: 40px;
+}
+
+.how{
+  margin-top: 30px;
+}
+
+.why{
+  margin-top: 30px;
+}
+.info{
+  padding: 30px;
+  width: 100%;
+}
+.info .how{
+  list-style-type: none;
+  float: left;
+  width: 600px;
+}
+
+.info .how span{
+  font-size: 40px;
+}
+.how ol{
+  font-size: 18px;
+}
+.why ul{
+  font-size: 18px;
+}
+#message{
+  margin-top: 30px;
+  height: 400px;
+  width: 400px;
+  border-radius: 50%;
+  float: right;
+}
