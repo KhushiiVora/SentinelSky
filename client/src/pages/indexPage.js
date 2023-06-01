@@ -5,9 +5,9 @@ import { TypeAnimation } from "react-type-animation";
 
 function IndexPage() {
   return (
-    <div className="bodi">
-      <Header />
-      <div class="heading">
+    <div className="index-background">
+      <br/>
+      <div class="index-heading">
         <h1 id="weather">SentinelSky</h1>
         <div className="sub">
           <span className="head">Subscribe to </span>
@@ -16,7 +16,7 @@ function IndexPage() {
             sequence={[
               "Email-Notifications", // Types 'One'
               1000, // Waits 1s
-              "SMS-Notification", // Deletes 'One' and types 'Two'
+              "Weather Report", // Deletes 'One' and types 'Two'
               1000, // Waits 2s
             ]}
             cursor={true}
@@ -25,57 +25,50 @@ function IndexPage() {
         </div>
         <p>
           <h4>
-            Welcome to our website! We provide a service that sends SMS
-            notifications to subscribed users about weather and nearby
-            disasters.
+          Stay informed and prepared with instant SMS notifications and accurate weather reports delivered straight to your email.
           </h4>
         </p>
       </div>
       <br />
-
-      <div class="element-items">
-        <div>
-          <span>How it Works?</span>
-          <br />
-          <ol>
-            <li>
-              Sign up for our service with your phone number and location.
-            </li>
-            <li>
-              When there is severe weather or a disaster near your location, we
-              will send you a text message with information and instructions.
-            </li>
-            <li>Stay safe and prepared!</li>
-          </ol>
+      <div className="index-box">
+        <div class="element-items">
+          <div>
+            <span>How it Works?</span>
+            <br />
+            <ol>
+              <li>
+                Sign up for our service with your Email and location.
+              </li>
+              <li>
+                We will send you daily weather report on your email in the morning.
+              </li>
+              <li>Stay safe and prepared!</li>
+            </ol>
+          </div>
+          <img src="/user.jpeg" className="image" alt="" />
         </div>
-        <img src="/user.jpeg" className="image" alt="" />
-      </div>
 
-      <div class="element-items">
-        <img src="/weather4.jpg" alt="" className="image" />
-        <div>
-          <span>Why Choose Us?</span>
-          <br />
-          <ul>
-            <li>Reliable and accurate notifications.</li>
-            <li>
-              Customizable alert settings so you only receive notifications
-              about the events that matter to you.
-            </li>
-            <li>24/7 support available.</li>
-            <li>Easy to use and user-friendly interface.</li>
-          </ul>
+        <div class="element-items">
+          <img src="/weather4.jpg" alt="" className="image" />
+          <div>
+            <span>Why Choose SentinalSky?</span>
+            <br />
+            <ul>
+              <li>Reliable and accurate notifications.</li>
+              <li>Easy to use and user-friendly interface.</li>
+            </ul>
+          </div>
         </div>
       </div>
-
-      <div class="signup">
+      <br/>
+      <div class="index-heading">
         <div className="sign">Sign Up Now</div>
         <p className="message">
           Don't wait until it's too late! Sign up now to start receiving weather
           and disaster SMS notifications.
         </p>
         <Link to="/signup">
-          <button id="but" herf="/signup">
+          <button id="but" herf="/signup" className="button">
             Sign Up
           </button>
         </Link>

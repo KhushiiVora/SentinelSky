@@ -1,56 +1,47 @@
-// import React, { useState, useEffect } from "react";
-// import logo from "./logo.svg";
-// import "./App.css";
 
-// function App() {
-//   const [data, setData] = React.useState(null);
+import React, { useState } from "react";
+import "./index.css";
+import "./App.css";
+import IndexPage from "./pages/indexPage";
+import Login from "./pages/loginPage";
+import ProfilePage from "./pages/profilePage";
+import SignUpPage from "./pages/signupPage";
+import SettingsPage from "./pages/settingsPage";
+import axios from "axios";
+import { useEffect } from "react";
 
-//   React.useEffect(() => {
-//     fetch("/api")
-//       .then((res) => res.json())
-//       .then((data) => setData(data.message));
-//   }, []);
+// import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+// import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Header from "./components/header";
+import Header2 from "./components/header2";
 
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>{!data ? "Loading..." : data}</p>
-//       </header>
-//     </div>
-//   );
-// }
 
-// // function App() {
-// //   const [data, setData] = useState(null);
+function App() {
 
-// //   useEffect(() => {
-// //     fetch("/api")
-// //       .then((response) => response.json())
-// //       .then((data) => setData(data.message));
-// //     // .catch((error) => console.log(error));
-// //   }, []);
+  const [loginFlag,setLoginFlag] = useState(false);
 
-// //   return (
-// //     <div className="App">
-// //       <h1>{message}</h1>
-// //       <header className="App-header">
-// //         <img src={logo} className="App-logo" alt="logo" />
-// //         <p>
-// //           {!data ? "Loding..." : data}
-// //           Edit <code>src/App.js</code> and save to reload.
-// //         </p>
-// //         <a
-// //           className="App-link"
-// //           href="https://reactjs.org"
-// //           target="_blank"
-// //           rel="noopener noreferrer"
-// //         >
-// //           Learn React
-// //         </a>
-// //       </header>
-// //     </div>
-// //   );
-// // }
+useEffect( () => {
+   axios.get("/userExistence").then((response) => {
+    setLoginFlag(response.data);
+  });
+  return () => {
+    console.log('Component unmounted');
+  };
+}, []);
+  return (
+    <div>
+      {!loginFlag && <Header/>}
+      {loginFlag &&  <Header2/>}
+    <Routes>
+      <Route exact path="/signup"  element={<SignUpPage />}/>
+      <Route path="/profile" element={<ProfilePage/>} />
+      <Route path="/" element={<IndexPage/>}/>
+      <Route path="/login" element={<Login/>}/>
+      <Route path="/settings" element={<SettingsPage/>}/>
+      </Routes>
+    </div>
+  );
+}
 
-// export default App;
+export default App;

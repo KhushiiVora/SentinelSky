@@ -1,73 +1,99 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Header from "../components/header";
+
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
-  const [username, setUsername] = useState("");
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
   const handleSubmit = async (event) => {
     const loginData = {
-      username,
+      email,
       password,
     };
 
-    console.log(username);
+    console.log(email);
     try {
-      await axios.post("/login", loginData);
-    } catch (error) {
-      // Handle error
-      // console.error("Error sending user data to MongoDB:", error);
-    }
+      await axios.post("/login", loginData).then((response) => {
+        if(response.status == 200)
+        {
+          alert(response.data);
+          navigate("/profile");
+        }
+      }).catch((response)=>{
+        console.log(response);
+        if(response.response.status == 404)
+          alert(response.response.data);
+      });
+    } catch (error) {}
     event.preventDefault();
-    // alert(`Username: ${username} Password: ${password}`);
+    setEmail("");
+    setPassword("");
   };
 
+
   return (
-    <div>
-      <Header />
-      <div className="section">
-        <div className="login-box">
-          {/* <form onSubmit={handleSubmit}> */}
+    <div className="login-background">
+      <div className="page">
+        <div className="form">
+          <div className="heading"> Login </div>
           <div>
-            <h2>Login</h2>
-            <div class="input-box">
-              <span class="icon">
-                <ion-icon name="username"></ion-icon>
-              </span>
+            {/* Email */}
+            <div className="form-group">
+              <label htmlFor="email">Email:</label>
               <input
-                type="text"
-                value={username}
-                name="username"
-                onChange={(event) => setUsername(event.target.value)}
+                type="email"
+                id="email"
+                className="form-input"
+                value={email}
+                name="email"
+                onChange={(event) => setEmail(event.target.value)}
+                required
               />
-              <label>Email</label>
             </div>
-            <div class="input-box">
-              <span class="icon">
-                <ion-icon name="lock-closed"></ion-icon>
-              </span>
+            {/* Password */}
+            <div className="form-group">
+              <label htmlFor="password">Password:</label>
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
+                id="password"
+                className="form-input"
                 value={password}
                 name="password"
                 onChange={(event) => setPassword(event.target.value)}
+                required
               />
-              <label>Password</label>
+              <label className="show-password">
+                <input
+                  type="checkbox"
+                  checked={showPassword}
+                  onChange={(event) => setShowPassword(!showPassword)}
+                />
+                Show password
+              </label>
             </div>
 
-            <button type="submit" onClick={handleSubmit}>
+            <button
+              type="submit"
+              className="button"
+              formaction="/profilePage.js"
+              onClick={handleSubmit}
+            >
               Login
             </button>
             <div className="already">
               Don't have an account? <span> </span>
               <Link to="/signup">signup</Link> Here.
             </div>
-            {/* </form> */}
           </div>
         </div>
       </div>
     </div>
+
   );
 }
 

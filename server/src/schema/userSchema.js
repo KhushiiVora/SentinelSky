@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const bcryptjs = require("bcryptjs");
 const validator = require("validator");
+const jwt = require("jsonwebtoken");
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -40,32 +41,12 @@ const userSchema = new mongoose.Schema({
     },
   },
 
-  mobileNumber: {
-    type: String,
-    required: true,
-    trim: true,
-    validate(value) {
-      if (!validator.isMobilePhone(value)) {
-        throw new Error("Unable to SignUp! Invalid mobile number");
-      }
-    },
-  },
 
   weatherNotifications: {
     type: Boolean,
     default: false,
   },
 
-  disasterNotifications: {
-    type: Boolean,
-    default: false,
-  },
-
-  notificationMethod: {
-    type: String,
-    trim: true,
-    lowercase: true,
-  },
 
   location: {
     latitude: {
@@ -77,13 +58,37 @@ const userSchema = new mongoose.Schema({
       required: true,
     },
   },
+
+  tokens: [
+    {
+      /*Each token in an tokens array will be an object with a single field called token.*/
+      token: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
 });
+
+//--------------AUTHENTICATING USER-------------
+userSchema.methods.genAuthToken = async function () {
+  const user = this;
+  const token = jwt.sign({ _id: user._id.toString() }, "thisismynewideA", {
+    expiresIn: "1 day",
+  });
+
+  user.tokens = user.tokens.concat({ token });
+  await user.save(); //saves token in database
+
+  return token;
+};
 
 //--------------Hashing Passwords-------------
 userSchema.pre("save", async function (next) {
   const user = this;
 
   if (user.isModified("password")) {
+    // console.log("Inside function pre save");
     user.password = await bcryptjs.hash(user.password, 8);
   }
 
@@ -108,6 +113,40 @@ userSchema.statics.findByCredentials = async (email, password) => {
     }
   }
 };
+
+//-------------reset password------------
+userSchema.statics.resetData = async (dataToUpdate, user) => {
+  const isMatch = await bcryptjs.compare(
+    dataToUpdate.oldPassword,
+    user.password
+  );
+  console.log(isMatch);
+  if (isMatch) {
+    if (dataToUpdate.username != "") user.username = dataToUpdate.username;
+    if (dataToUpdate.newPassword != "") {
+      user.password = dataToUpdate.newPassword;
+      delete user.tokens;
+    }
+    await user.save();
+    console.log("After wala user");
+    console.log(user);
+  }
+  return isMatch;
+};
+
+//-------------Find user------------------
+userSchema.statics.findUser = async (token) => {
+  const decoded = jwt.verify(token, "thisismynewideA");
+
+
+  const user = await User.findOne({
+    _id: decoded._id,
+    "tokens.token": token,
+  });
+  return user;
+};
+
+
 
 const User = mongoose.model("User", userSchema);
 module.exports = User;
